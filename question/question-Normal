@@ -1,0 +1,121 @@
+1. Describe Git branching strategies (Git-flow, single branch, feature branch etc.) which you have used and what purpose it serves.
+    = 
+    Git is a distributed version control system that allows developers to collaborate on the same codebase while maintaining the history of changes. One of the key features of Git is its branching capability, which allows developers to create parallel versions of a codebase to work on. There are several branching strategies that developers can use in Git, and the choice of strategy depends on the size and complexity of the project as well as the team's workflows.
+    Here are three common Git branching strategies:
+    1. Git-flow: This is a popular branching model that defines a strict branching structure and a set of rules for how code changes should be merged. It includes a "master" branch, which is always stable and contains production-ready code, 
+    and a "develop" branch, which is the main development branch. Feature branches are created off the develop branch for each new feature or bug fix, and these branches are merged back into develop when the work is complete. Release branches are created from develop for each new release, and these branches are used for bug fixes and preparation for the release. 
+    Finally, hotfix branches are created from the master branch for emergency fixes to production code.
+    The Git-flow model provides a clear structure and promotes good code management practices, but it can be complex and require discipline to follow.
+    2. Single branch: This is a simple branching model in which all changes are made on a single branch, typically the master branch. This model is suitable for small projects with few contributors or for rapid prototyping, but it can lead to conflicts and confusion when multiple people are working on the same codebase.
+    3. Feature branch: This is a branching model in which developers create separate branches for each new feature or bug fix. These branches are merged back into the main branch when the work is complete. This model allows for more parallel development and reduces the risk of conflicts, but it requires discipline to manage multiple branches and ensure that changes are merged in a timely manner.
+    In summary, the choice of Git branching strategy depends on the size and complexity of the project as well as the team's workflows. Git-flow provides a structured approach for managing changes, while single branch and feature branch models offer simpler alternatives for small projects or rapid prototyping.
+
+2. How do you revert a commit that has already been pushed and made public?
+    = you can use the "git revert" command.
+        1. Open your terminal and navigate to the local repository where the commit was made.
+        2. Use the "git log" command to find the hash of the commit you want to revert. The commit hash is a long string of letters and numbers that identifies the commit.
+        3. Once you have identified the commit hash, use the git revert command followed by the hash to create a new commit that undoes the changes made by the original commit.
+        4. Finally, use the git push command to push the new revert commit to the remote repository
+        Note that the "git revert" command creates a new commit that undoes the changes made by the original commit, rather than deleting the original commit. This is important to maintain the integrity of the repository history and ensure that other contributors are aware of the change.
+
+3. How do you normally solve conflicts in a feature branch before merge?
+    = Git is designed to help developers merge code changes from different sources smoothly. However, conflicts can still occur when two or more people modify the same code in different ways. In order to resolve conflicts in a feature Git branch before merging it, you can follow these steps:
+        1. Check for conflicts: Before merging the feature branch, make sure to pull the latest changes from the main branch and merge them into the feature branch. This will identify any conflicts that need to be resolved.
+        $ git fetch origin
+        $ git checkout feature-branch
+        $ git merge origin/main
+        2. Identify the conflicting changes: Once the merge is complete, Git will indicate if there are any conflicts. You can use the "git status" command to see which files have conflicts.
+        3. Resolve the conflicts: Open the files with conflicts and edit them to resolve the conflicts. Git will indicate the location of the conflicts in the file with markers that look like <<<<<<<, =======, and >>>>>>>. You need to manually edit the code to remove the markers and decide which changes to keep. Make sure to test the code after resolving the conflicts to ensure it still works as expected.
+        4. Stage the changes: Once the conflicts are resolved, stage the changes for the commit by using the "git add" command.
+        5. Commit the changes: Finally, commit the changes using the "git commit" command and add a message to describe the changes made to resolve the conflicts.
+        6. Push the changes: Once the conflicts are resolved and the changes are committed, push the changes to the remote feature branch using the "git push" command.
+        This process should resolve any conflicts in the feature Git branch before merging it into the main branch, ensuring that the codebase remains consistent and functional.
+        
+
+4. “200 OK” what does it mean and show the use case of this HTTP Status?
+    = an HTTP status code that indicates that a request has been successfully processed by the server and the response is being returned to the client.
+
+5. “201 Created” what does it mean and show the use case of this HTTP Status?
+    = status code indicates that a new resource has been successfully created on the server, typically as a result of a POST or PUT request.
+
+6. “301 Moved Permanently” what does it mean and show the use case of this HTTP Status?
+    = status code that indicates that the requested resource has been permanently moved to a new location.
+    It means that the URL that the client is attempting to access has been permanently redirected to a different URL.
+
+7. “400 Bad Request” what does it mean and how to identify the problem?
+    = status code that indicates that the server was unable to process the request due to a client error.
+    It means that the server cannot or will not process the request because the request is invalid or malformed in some way.
+    To identify and troubleshoot:
+        1. Check the request syntax.
+        2. Check the request parameters.
+        3. Check for request size limits.
+        4. Check server logs for any error messages or clues as to the cause.
+
+8. “401 Unauthorized” what does it mean and how to identify the problem?
+    = status code that indicates that the client is not authorized to access the requested resource.
+    To identify and troubleshoot:
+        1. Check authentication credentials that they are correctly formatted.
+        2. Check authentication type such as HTTP basic authentication or OAuth.
+        3. Check permissions which has sufficient permissions to access the requested resource.
+        4. Check server logs for any error messages or clues as to the cause.
+
+9. “403 Forbidden” what does it mean and how to identify the problem?
+    = status code is used to indicate that the client is not authorized to access the requested resource, even if they have provided valid credentials.
+    To identify and troubleshoot:
+        1. Check permissions which has sufficient permissions to access the requested resource.
+        2. Check IP address blocking.
+        3. Check file permissions.
+        4. Check request limits.
+        5. Check server logs for any error messages or clues as to the cause.
+
+10. “404 Not Found” what does it mean and how to identify the problem?
+    = status code is used to indicate that the requested resource could not be found on the server.
+    To identify and troubleshoot:
+        1. Check URL that it is spelled correctly.
+        2. Check resource location that the requested resource exists and that it is located in the expected location.
+        3. Check for broken links.
+        4. Check server configuration.
+        5. Check server logs for any error messages or clues as to the cause.
+
+11. “500 Internal Server Error” what does it mean and how to identify the problem?
+    = status code is used to indicate that there was an error on the server side that prevented it from completing the request. 
+    To identify and troubleshoot:
+        1. Refresh the page because it can be a temporary issue.
+        2. Check server logs for any error messages or clues as to the cause.
+        3. Check server configuration.
+        4. Check programming code if the server is running a program or script.
+        5. Check database if the server relies on a database.
+
+12. “502 Bad Gateway” what does it mean and how to identify the problem?
+    = status code is used to indicate that the gateway or proxy server was unable to complete the request due to an invalid response from an upstream server. 
+    To identify and troubleshoot:
+        1. Refresh the page because it can be a temporary issue.
+        2. Check server logs for any error messages or clues as to the cause.
+        3. Check upstream server to ensure that it is functioning correctly and responding to requests.
+        4. Check connectivity that there are no connectivity issues between the gateway or proxy and the upstream server.
+        5. Check DNS that there are no DNS issues preventing the gateway or proxy from resolving the IP address of the upstream server.
+
+13. “503 Service Unavailable” what does it mean and how to identify the problem?
+    = status code is used to indicate that the server is temporarily unable to handle the request due to a temporary overload or maintenance.
+    To identify and troubleshoot:
+        1. Refresh the page because it can be a temporary issue.
+        2. Check server logs for any error messages or clues as to the cause.
+        3. Check server configuration.
+        4. Check server load to see if the server is under heavy load.
+        5. Check maintenance schedule if the server is undergoing maintenance or updates.
+
+14. “504 Gateway Timeout” what does it mean and how to identify the problem?
+    = status code is used to indicate that the gateway or proxy server did not receive a timely response from an upstream server.
+    To identify and troubleshoot:
+        1. Refresh the page because it can be a temporary issue.
+        2. Check server logs for any error messages or clues as to the cause.
+        3. Check upstream server to ensure that it is functioning correctly and responding to requests.
+        4. Check connectivity that there are no connectivity issues between the gateway or proxy and the upstream server.
+        5. Check network that there are no network issues preventing the gateway or proxy from communicating with the upstream server.
+
+15. What Linux network tools do you use for troubleshooting network problems as well as usage scenarios for each tool?
+    = Depending on the specific problem, each tool can be used in a variety of scenarios to identify the source of the issue and take corrective action.
+    1. ping can be used to check network connectivity.
+    2. traceroute can be used to identify routing issues.
+    3. nmap can be used to scan for open ports.
+    4. ip command can be used to display and configure network interfaces and routing tables.

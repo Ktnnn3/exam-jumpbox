@@ -1,0 +1,101 @@
+
+1. Assume that you are using a private cloud for your infrastructure. How do you manage logs, metrics, and alerts for your infrastructure and applications? Which tools do you use and why?
+    = 
+    Logging: 
+    For logging, tools such as Elasticsearch can be used. 
+    These tools collect logs from various sources and centralize them in a searchable format, making it easier to analyze and troubleshoot issues.
+
+    Metrics: For metrics collection, tools such as Prometheus, Grafana, or InfluxDB can be used. 
+    These tools collect metrics from various sources such as applications, servers, and network devices, and provide visualization and alerting capabilities.
+
+    Alerts: For alerting, tools such as PagerDuty, OpsGenie, or Prometheus Alertmanager can be used. 
+    These tools can send alerts based on predefined rules and thresholds and can integrate with various communication channels such as email, SMS, or chat tools.
+
+    In addition to the above tools, cloud providers such as AWS, Azure, and GCP provide their own logging, metrics, and alerting solutions, such as CloudWatch, Azure Monitor, and Stackdriver respectively. 
+    These solutions can be integrated with the above tools for a more comprehensive monitoring solution.
+
+    When managing logs, metrics, and alerts in a private cloud environment, 
+    it is important to consider factors such as scalability, cost, and security. 
+    It is also important to ensure that the tools used are compatible with the cloud environment and can integrate with the existing infrastructure and applications.
+
+
+2. How do you secure the following?
+· application
+· infrastructure
+· data
+    = 
+    Securing the Application:
+        1. Keep the application up-to-date with the latest security patches and updates.
+        2. Use secure coding practices and follow coding standards.
+        3. Implement input validation and output encoding to prevent injection attacks such as SQL injection and cross-site scripting (XSS).
+        4. Use encryption to protect sensitive data such as passwords and credit card numbers.
+        5. Use multi-factor authentication
+        6. Implement secure session management to protect user sessions.
+        7. Use firewalls and intrusion detection/prevention systems to protect against network attacks.
+
+    Securing the Infrastructure:
+        1. Restrict access to the infrastructure with strong passwords and access controls.
+        2. Use security software such as anti-virus, anti-malware, and intrusion detection/prevention systems.
+        3. Encrypt sensitive data in transit and at rest.
+        4. Use secure protocols such as HTTPS, SSH, and VPNs for remote access.
+        5. Implement regular security audits and vulnerability scans to identify and address weaknesses.
+        6. Use logging and monitoring tools to detect and respond to security incidents.
+
+    Securing the Data:
+        1. Implement access controls and restrict access to sensitive data to only authorized personnel.
+        2. Use encryption to protect data at rest and in transit.
+        3. Implement regular backups and disaster recovery plans to protect against data loss.
+        4. Use data masking and tokenization techniques to protect sensitive data.
+        5. Implement data retention policies to ensure that data is only retained for as long as necessary.
+        6. Use secure data transfer protocols such as SFTP and HTTPS.
+
+3. Based on your experience, how do you reduce your service downtime as much as possible during
+· software upgrade
+· database migration
+· incident
+    = 
+    1. Implement a blue-green deployment strategy while you want to deploy software to a new set of servers so it waits to servers are ready, traffic is switched over to them.
+    2. Use rolling updates which just want to update a few severs and leave the rest still running. After the servers are been ready, it gets back to load balancer rotation.
+    3. setting up a standby database server that automatically takes over if the primary database server goes down. This ensures that database downtime is minimized.
+    4. Monitor the application and infrastructure performance closely and keep a watchful eye on logs to identify any issues before they escalate into bigger problems.
+    5. have a rollback plan in case things don't go as planned. This will ensure that you can quickly and easily roll back to the previous version
+    6. Regularly test your disaster recovery plan to ensure that it's up to date and effective.
+
+4. How do you design your Kubernetes cluster? what DNS, CNI, ingression is being used? Why?
+    = 
+5. How do you design your Cloud infrastructure? (Answer as draw.io or your tool of choices)
+- Networking
+- Security
+- Data Durability
+- High Availability
+- Autoscaling
+    = I designed system using Azure cloud system in my course while i was a student in university. 
+    you can see picture in the file names './diagram-cloud-infra.jpeg' 
+    1. Networking 
+        we have application gateway to manage the traffic when many clients try to access our web application.
+    2. Security 
+        in the diagram, we set employee who work from home have to get through VPN then every employee has to verify themselves and get thier privilege at AD. WAF(Web Application Firewall) verify in case malware is in the contents (normally firewall only look up malware in header not in the contents)
+    3. Data Durability
+        Normally with database engine, there is a good level of data checking if nothing strange, data consistency should be at an acceptable level and we use the SQL Database from Azure service so they garantee data durability.
+    4. High Availability
+        application gateway can do load balance when the clients access our web page. In case one of nodes can not run our web page, application gateway will switch to other nodes to be able to access our web page.
+    5. Autoscaling
+        normally K8 can scale pods automatically but we also have our Azure monotor are set alert when the maximum scalable resource is almost running out.
+
+
+
+6. How do you measure service quality to give the best experience to your customer? (SLO, SLA)
+    =
+    SLOs define the performance targets for a service and provide a clear framework for measuring the service quality and tracking progress over time.
+    SLAs are the commitments made by a service provider to the customers about the level of service they will receive and provide a clear understanding of the expectations for service quality and the consequences if they are not met.
+    To measure service quality, it is important to track performance metrics that align with the SLOs, such as availability, latency, and error rates as well as gather feedback from customers to understand their experience with the service which can be used to identify areas for improvement and prioritize efforts to improve the service quality.
+
+7. How do you design a highly scalable Kubernetes cluster and which Kubernetes objects are being used? (answer as drawio or your tool of choices)
+    =
+    1. Decide on the number of worker nodes required to support the expected workload by using tools like Kubernetes Autoscaling to automatically add or remove nodes based on the workload.
+    2. Choose cloud providers or on-premises hardware that can provide the required resources and scalability.
+    3. Select a Container Networking Interface (CNI) that can provide the required networking capabilities and performance. 
+    4. Use a load balancer to distribute traffic across the cluster. Kubernetes provides an Ingress controller that can be used to configure load balancing.
+    5. Configure HPA to automatically scale pods up or down based on CPU utilization, memory usage, or custom metrics.
+    6. Use Kubernetes Services to provide stable network endpoints to pods
+    

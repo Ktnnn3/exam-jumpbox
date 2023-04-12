@@ -1,0 +1,38 @@
+1. Assume we have an application that is designed as below. Our application stopped responding due to an extremely high number of clients in some circumstances.
+- We have tried scaling a number of API Gateway and Service A nodes but it didn’t help. What are the possible problems that lies in our system in which components and how to fix them?
+    = 
+    1. The system's database might be facing performance issues due to high traffic or inefficient queries, you could consider optimizing your database queries, caching frequently used data, or even upgrading your database hardware.
+    2. The API Gateway and Service A nodes might be performing well, but the downstream services they rely on might be slow or overloaded, you could consider scaling the downstream services or optimizing their performance by identifying and fixing any bottlenecks.
+    3. The system's performance might be impacted by network latency issues, you could consider optimizing your network infrastructure, such as reducing the number of hops between different components or using a content delivery network (CDN) to cache and deliver content closer to end users.
+    4. The system's performance could also be impacted by poorly optimized code in the API Gateway, Service A, or downstream services, you could consider profiling your code to identify and optimize any performance bottlenecks.
+    5. It's possible that the system doesn't have sufficient resources to handle the incoming traffic. In this case, you could consider upgrading your hardware or optimizing your resource allocation.
+
+2. How do you keep the docker image smallest as possible?
+    =
+        1. Start with a minimal base image, such as Alpine Linux or BusyBox, rather than a full-featured operating system like Ubuntu.
+        2. Remove any files or directories that are not needed for the application to run. 
+        3. Each instruction in the Dockerfile creates a new layer in the Docker image. To minimize the number of layers, try to group related instructions together and use multi-stage builds to separate the build environment from the runtime environment.
+        4. Docker caches the results of each instruction in the Dockerfile, so it's important to structure the Dockerfile in a way that maximizes caching.
+        5. When installing packages, use the --no-install-recommends flag to avoid installing unnecessary dependencies. 
+        6. Use a .dockerignore file to exclude any unnecessary files and directories from the Docker build context. 
+
+3. How does the Kubernetes service talk to each other in the same cluster?
+    = Kubernetes Services provide a stable IP address and DNS name for a set of Pods, allowing them to communicate with each other within the same cluster.
+
+4. What’s different between L2, L4, and L7 Load balancers? When to use it?
+    = 
+     Load balancers can be classified into three categories based on the layer of the OSI model they operate on:
+     L2 (Layer 2) Load Balancers:
+        also known as Data Link Layer load balancers, operate at the data link layer of the OSI model. They are mainly used for balancing traffic between servers on the same subnet. 
+
+        L2 load balancers are suitable for use cases where traffic needs to be distributed between servers on the same subnet, such as in a data center or local network environment.
+
+    L4 (Layer 4) Load Balancers:
+        also known as Transport Layer load balancers, operate at the transport layer of the OSI model. They distribute traffic based on the IP address and port number of the incoming request.
+
+        L4 load balancers are suitable for use cases where you need to balance traffic based on IP address and port number, and require basic TCP/UDP load balancing functionality, such as load balancing web servers or database servers.
+
+    L7 (Layer 7) Load Balancers:
+         also known as Application Layer load balancers, operate at the application layer of the OSI model. They distribute traffic based on the content of the incoming request, and can differentiate between different applications or protocols.
+
+        L7 load balancers are suitable for use cases where you need advanced functionality, such as content-based routing, SSL offloading, or caching. They are commonly used for load balancing HTTP and HTTPS traffic, and can help optimize the performance and availability of web applications.
